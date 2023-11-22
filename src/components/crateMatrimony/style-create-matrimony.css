@@ -1,0 +1,196 @@
+.frame {
+  /* align-items: flex-start; */
+  display: flex;
+  gap: 12px;
+  /* position: relative; */
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: row;
+  flex: 1 0 0;
+}
+
+.frame-info-card {
+  /* align-items: flex-start; */
+  display: flex;
+  gap: 12px;
+  /* position: relative; */
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: row;
+  flex: 1 0 0;
+  width: 100%;
+}
+
+.ellipse {
+  height: 64px;
+  object-fit: cover;
+  /* position: relative; */
+  width: 64px;
+  border-radius: 50%;
+}
+
+.div {
+  align-items: center;
+  display: flex;
+  /* display: inline-flex; */
+  /* flex: 0 0 auto; */
+  /* flex-direction: column; */
+  gap: 12px;
+  /* position: relative; */
+}
+
+.div-info-card {
+  align-items: center;
+  display: flex;
+  /* display: inline-flex; */
+  /* flex: 0 0 auto; */
+  /* flex-direction: column; */
+  gap: 12px;
+  width: 90%;
+  /* position: relative; */
+}
+
+.div-2{
+
+}
+
+.somesh-paliwal {
+  width: 100;
+  align-self: stretch;
+  color: rgba(20, 20, 20, 1);
+  font-family: 'Inter-Medium', Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 140%;
+  margin-top: -1px;
+  position: relative;
+
+  padding-top: 13px;
+}
+
+.text-wrapper {
+  /* color: #141414;
+  font-family: 'Inter-Medium', Helvetica;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 140%;
+  align-self: stretch; */
+  color:#141414;
+  align-self: stretch;
+/* Paragraph/Regular - Medium */
+font-family: 'Inter-Regular', Helvetica;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 22.4px */
+}
+
+.text-wrapper-2 {
+  align-self: stretch;
+  /* color: var(--black-60); */
+  color: rgba(114, 114, 114, 1);
+  font-family: 'Inter-Regular', Helvetica;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 139.9999976158142%;
+  position: relative;
+}
+
+.bottom-text {
+  color: #727272;
+  text-align: center;
+  /* Paragraph/Extra Small */
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 16.8px */
+}
+
+.footer {
+  display: flex;
+  gap: 2px;
+  flex-direction: column;
+}
+
+/* slip info card styles */
+
+/* .frame {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    flex-direction: row;
+    position: relative;
+  }
+  
+  .div {
+    align-items: center;
+    display: flex;
+    /* flex: 1; */
+/* flex-grow: 1; */
+/* gap: 12px; */
+/* position: relative; */
+/* justify-content: center */
+/* }
+  
+  .ellipse {
+    height: 64px;
+    /* object-fit: cover; */
+/* position: relative; */
+/* width: 64px; */
+/* }
+  
+  .div-2 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+  
+  .text-wrapper {
+    align-self: stretch;
+    color: var(--black-100);
+    font-family: var(--paragraph-regular-medium-font-family);
+    font-size: var(--paragraph-regular-medium-font-size);
+    font-style: var(--paragraph-regular-medium-font-style);
+    font-weight: var(--paragraph-regular-medium-font-weight);
+    letter-spacing: var(--paragraph-regular-medium-letter-spacing);
+    line-height: var(--paragraph-regular-medium-line-height);
+    margin-top: -1px;
+    position: relative;
+  } */
+
+/* .frame .text-wrapper-2 {
+    align-self: stretch;
+    color: var(--black-60);
+    font-family: var(--paragraph-small-font-family);
+    font-size: var(--paragraph-small-font-size);
+    font-style: var(--paragraph-small-font-style);
+    font-weight: var(--paragraph-small-font-weight);
+    letter-spacing: var(--paragraph-small-letter-spacing);
+    line-height: var(--paragraph-small-line-height);
+    position: relative;
+  } */
+
+/* .buttons-instance {
+    background-color: var(--white-100) !important;
+    border: 1px solid !important;
+    border-color: var(--black-100) !important;
+    display: flex !important;
+    height: 32px !important;
+    width: 72px !important;
+  } */
+
+/* .frame .design-component-instance-node {
+    color: var(--black-100) !important;
+    margin-left: -6.5px !important;
+    margin-right: -6.5px !important;
+  }  */
