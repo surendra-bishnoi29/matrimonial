@@ -1,0 +1,27 @@
+.info-values {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+  min-width: 150px;
+}
+
+.label {
+    align-self: stretch;
+  color: var(--black-60, #727272);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 16.8px */
+}
+
+.value {
+    align-self: stretch;
+  color: var(--black-100, #141414);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 19.2px */
+}
