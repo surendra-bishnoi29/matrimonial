@@ -9,10 +9,18 @@ export async function getMatrimonialProfiles() {
     return result;
 }
 
+// API to get all gautras
+
+export const getAllGautras = async () => {
+    url += '/api/gautras'
+    const result = await helpers.httpGet(url)
+    return result;
+    }
+  
 
 // API to get family members whose profiles can be created
-export async function getFamilyMembers() {
-    url += 'api/matrimony/12345678/profiles/'
+export async function getEligibleFamilyMembers(loggedInID) {
+    url += `/api/matrimony/${loggedInID}/unmarried_members/`
     const result = await helpers.httpGet(url)
     return result;
 }
@@ -61,16 +69,16 @@ export async function postKundliPhoto (){
 }
 
 // API to save profile as draft
-export async function postDraftProfile (){
+export async function postDraftProfile (data){
     url +='api/matrimony/12345678/profiles/'
-    const result = await helpers.httpGet(url)
+    const result = await helpers.httpPost(url, data)
     return result;
 }
 
 // API to publish profile
-export async function postPublishProfile (){
+export async function postPublishProfile (data){
     url +='api/matrimony/12345678/profiles/'
-    const result = await helpers.httpGet(url)
+    const result = await helpers.httpPost(url, data)
     return result;
 }
 
