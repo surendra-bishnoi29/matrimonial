@@ -42,6 +42,8 @@ type ContextProps = {
   handleBackPage(): void
   variant: Variant
   margin: Margin
+  handleChangeMultiValues(objectValues: any): void
+  handleReset(): void
 }
 
 export const AppContext = createContext<ContextProps>({
@@ -56,7 +58,9 @@ export const AppContext = createContext<ContextProps>({
   handleNextPage() { },
   handleBackPage() { },
   variant,
-  margin
+  margin,
+  handleChangeMultiValues() { },
+  handleReset() { }
 })
 
 interface ProviderProps {
@@ -78,6 +82,7 @@ type Action =
   | { type: 'step-form-value', stepVal: any }
   | { type: 'step-page-value', pageVal: any }
   | { type: 'form-error'; name: string; error: string }
+  | { type: 'change-multi-form-values'; objectValues: any }
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -111,6 +116,12 @@ function reducer(state: State, action: Action): State {
         ...state,
         activePage: action.pageVal
       }
+    case 'change-multi-form-values':
+      return {
+        ...state,
+        formValues: action.objectValues
+      }
+
     case 'form-value':
       return {
         ...state,
@@ -167,6 +178,28 @@ export function StepsProvider({ children }: ProviderProps) {
       dispatch({ type: 'step-form-value', stepVal })
     }, [])
   // Handle form change
+
+  const handleChangeMultiValues = useCallback((objectValues: any) => {
+    const keys = Object.keys(objectValues)
+    let newValues = formValues
+    keys.map((item) => {
+      newValues = {
+        ...newValues,
+        [item]: {
+          ...newValues[item],
+          value: objectValues[item]
+        }
+      }
+    })
+    objectValues = newValues
+    dispatch({ type: 'change-multi-form-values', objectValues })
+  }, [])
+
+  const handleReset = () => {
+    const objectValues = initialValues;
+    dispatch({ type: 'change-multi-form-values', objectValues })
+  }
+
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, checked?: boolean) => {
       const { type, name, value } = event.target
@@ -239,9 +272,11 @@ export function StepsProvider({ children }: ProviderProps) {
       handleNextPage,
       handleBackPage,
       variant,
-      margin
+      margin,
+      handleChangeMultiValues,
+      handleReset
     }),
-    [activeStep, activePage, formValues, handleChange, handleNext, handleBack, handleNextPage, handleBackPage, handleChangeStepVal, handleChangePageVal]
+    [activeStep, activePage, formValues, handleChange, handleNext, handleBack, handleNextPage, handleBackPage, handleChangeStepVal, handleChangePageVal, handleChangeMultiValues, handleReset]
   )
 
   return (
