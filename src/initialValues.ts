@@ -25,7 +25,7 @@ export const initialValues: ValidationSchema = {
     validate: 'email'
   },
   gender: {
-    value: '',
+    value: 'Male',
     error: '',
     validate: 'select'
   },
@@ -47,7 +47,7 @@ export const initialValues: ValidationSchema = {
     helperText: 'Custom error message'
   },
   marriageStatus: {
-    value: '',
+    value: 'single',
     error: '',
     validate: 'select'
   },
@@ -72,22 +72,22 @@ export const initialValues: ValidationSchema = {
   gautra: {
     value: '',
     error: '',
-    validate: 'select'
+    validate: 'text'
   },
   caste: {
-    value: '',
+    value: 'meghwal',
     error: '',
     validate: 'select'
   },
   manglik: {
-    value: '',
+    value: 'false',
     error: '',
     validate: 'select'
   },
   bloodGroup: {
     value: '',
     error: '',
-    validate: 'select'
+    validate: 'text'
   },
   height: {
     value: '',
@@ -106,7 +106,7 @@ export const initialValues: ValidationSchema = {
   color: {
     value: '',
     error: '',
-    validate: 'select'
+    validate: 'text'
   },
 
   // second step
@@ -158,7 +158,7 @@ export const initialValues: ValidationSchema = {
   },
 
   jobStatus: {
-    value: '',
+    value: 'student',
     error: '',
     validate: 'select'
   },
@@ -175,7 +175,7 @@ export const initialValues: ValidationSchema = {
     minLength: 3,
     maxLength: 20
   },
-  agreenemt: {
+  agreement: {
     value: false,
     error: '',
     required: true,
@@ -187,5 +187,17 @@ export const initialValues: ValidationSchema = {
     error: '',
     validate: 'phone',
     maxLength: 15
+  },
+  //4th step
+  uploadPhoto:{
+    value:''
+  },
+
+  uploadKundli:{
+    value:''
+  },
+
+  graph_node_id:{
+    value:''
   }
 }

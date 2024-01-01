@@ -5,11 +5,12 @@ import { AppContext } from "../Context";
 
 export default function SlipInfoCard(props:any) {
   const {member} = props
-  const { activePage, handleNextPage, handleChangePageVal, handleChangeStepVal } = useContext(AppContext)
+  const { activePage, handleNextPage, handleChangePageVal, handleChangeStepVal, handleChangeMultiValues } = useContext(AppContext)
   const handleAdd =async()=>{
     //get 
    // const response = await getInfoOfSelectedRelative()
    //
+   handleChangeMultiValues({graph_node_id:member.uid})
    handleNextPage()
   }
 let pic = "blank.png"

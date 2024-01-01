@@ -33,7 +33,7 @@ type ContextProps = {
   activePage: number
   formValues: ValidationSchema
   // eslint-disable-next-line no-unused-vars
-  handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, checked?: boolean): void
+  handleChange(event: any, checked?: boolean): void
   handleChangeStepVal(stepVal: any): void
   handleChangePageVal(pageVal: any): void
   handleNext(): void
@@ -201,9 +201,9 @@ export function StepsProvider({ children }: ProviderProps) {
   }
 
   const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, checked?: boolean) => {
+    (event: any, checked?: boolean) => {
       const { type, name, value } = event.target
-
+      console.log("from handlechange", type, name, value)
       const fieldValue = type === 'checkbox' ? checked : value
 
       dispatch({ type: 'form-value', name, fieldValue })
@@ -215,44 +215,44 @@ export function StepsProvider({ children }: ProviderProps) {
 
       let error = ''
 
-      if (required && !fieldValue) error = 'This field is required'
-      if (minLength && value && value.length < minLength) error = `Minimum ${minLength} characters is required.`
-      if (maxLength && value && value.length > maxLength) error = 'Maximum length exceeded!'
-      if (validate) {
-        switch (validate) {
-          case 'text':
-            if (value && !isText.test(value)) error = helperText || 'This field accepts text only.'
-            break
+      // if (required && !fieldValue) error = 'This field is required'
+      // if (minLength && value && value.length < minLength) error = `Minimum ${minLength} characters is required.`
+      // if (maxLength && value && value.length > maxLength) error = 'Maximum length exceeded!'
+      // if (validate) {
+      //   switch (validate) {
+      //     case 'text':
+      //       if (value && !isText.test(value)) error = helperText || 'This field accepts text only.'
+      //       break
 
-          case 'number':
-            if (value && !isNumber.test(value)) error = helperText || 'This field accepts numbers only.'
-            break
+      //     case 'number':
+      //       if (value && !isNumber.test(value)) error = helperText || 'This field accepts numbers only.'
+      //       break
 
-          case 'email':
-            if (value && !isEmail.test(value)) error = helperText || 'Please enter a valid email address.'
-            break
+      //     case 'email':
+      //       if (value && !isEmail.test(value)) error = helperText || 'Please enter a valid email address.'
+      //       break
 
-          case 'phone':
-            if (value && !isPhone.test(value))
-              error = helperText || 'Please enter a valid phone number. i.e: xxx-xxx-xxxx'
-            break
+      //     case 'phone':
+      //       if (value && !isPhone.test(value))
+      //         error = helperText || 'Please enter a valid phone number. i.e: xxx-xxx-xxxx'
+      //       break
 
-          case 'zip':
-            if (value && !isZip.test(value)) error = helperText || 'Please enter a valid zip code.'
-            break
+      //     case 'zip':
+      //       if (value && !isZip.test(value)) error = helperText || 'Please enter a valid zip code.'
+      //       break
 
-          case 'checkbox':
-            if (!checked) error = helperText || 'Please provide a valid value.'
-            break
+      //     case 'checkbox':
+      //       if (!checked) error = helperText || 'Please provide a valid value.'
+      //       break
 
-          case 'select':
-            if (!value) error = helperText || 'Please select a value.'
-            break
+      //     case 'select':
+      //       if (!value) error = helperText || 'Please select a value.'
+      //       break
 
-          default:
-            break
-        }
-      }
+      //     default:
+      //       break
+      //   }
+      // }
 
       dispatch({ type: 'form-error', name, error })
     },

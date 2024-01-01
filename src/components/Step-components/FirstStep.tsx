@@ -11,6 +11,7 @@ import { AppContext } from '../../Context';
 import Autocomplete from '@mui/material/Autocomplete';
 import './step-style-form.css';
 import { getAllGautras } from '../../Actions/action';
+import moment from 'moment'
 
 
 const dummyGautra :any[] = 
@@ -63,16 +64,23 @@ const dummyGautra :any[] =
               "subcastes": []
           }
       ]
-  interface stateproperties {
+interface stateproperties {
         name: string;
         age: number;
   }
-      
+
+const blood_groups = [
+  'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-' 
+]
+
+const complexions = [
+  'Very Fair', 'Fair', 'Medium', 'Light Brown Skin', 'Brown Skin','Black'
+]
 
 export default function FirstStep() {
-  const { formValues, handleChange, handleNext, variant, margin } = useContext(AppContext)
+  const { formValues, handleChange, handleNext, variant, margin, handleChangeMultiValues } = useContext(AppContext)
   console.log(formValues);
-  const { firstName, lastName, date, birthPalce, marriageStatus, homeAddress, aboutMe, gautra, email, caste, manglik, height, bloodGroup, weight, color, gender } = formValues
+  const { firstName, lastName, date, time, birthPalce, marriageStatus, homeAddress, aboutMe, gautra, email, caste, manglik, height, bloodGroup, weight, color, gender } = formValues
 
   // Check if all values are not empty and if there are some errors
   const [gautras, setGautras] = useState<stateproperties[]>([])
@@ -84,6 +92,18 @@ export default function FirstStep() {
       ),
     [formValues, firstName, lastName, email, gender]
   )
+
+  const handleAutocomplete =(item:any, name:any) =>{
+    console.log(item)
+    const event = {
+      target:{
+        value:item.target.lastChild.nodeValue  ,
+        type: 'text',
+        name:  name
+      }
+    }
+    handleChange(event)
+  }
   
   useEffect(() => {
     getGautras()
@@ -99,6 +119,12 @@ export default function FirstStep() {
     //to be commented letter
     setGautras(dummyGautra)
    
+  }
+
+  const handleDate =(time_selected: any)=>{
+    console.log(time_selected)
+    const time_of_birth = `${moment(time_selected.$d).get('hour')}:${moment(time_selected.$d).get('minute')}`
+    handleChangeMultiValues({time:time_of_birth})
   }
   return (
     <div className='wrapper'>
@@ -147,6 +173,7 @@ export default function FirstStep() {
             label='Date of birth'
             name='date'
             type='date'
+            value={date.value}
             defaultValue={date.value}
             onChange={handleChange}
           // required={date.required}
@@ -165,7 +192,8 @@ export default function FirstStep() {
 
               <DemoItem >
                 <MobileTimePicker
-                  onChange={(item, k) => { console.log(k) }}
+                  value={time.value}
+                  onChange={(time_selected)=>{handleDate(time_selected)}}
                 />
               </DemoItem>
             </DemoContainer>
@@ -212,13 +240,14 @@ export default function FirstStep() {
             }}
             name='marriageStatus'
             value={marriageStatus.value}
+            defaultValue={'single'}
             onChange={handleChange}
             error={!!marriageStatus.error}
             helperText={marriageStatus.error}
             required={marriageStatus.required}
           >
-            <option value='Unmarried'>Unmarried</option>
-            <option value='Married'>Married</option>
+            <option value='single'>Single</option>
+            <option value='divorced'>Divorced</option>
           </TextField>
         </Grid>
 
@@ -279,7 +308,7 @@ export default function FirstStep() {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12}>
           {/* <TextField
             variant={variant}
             margin={margin}
@@ -302,8 +331,9 @@ export default function FirstStep() {
             disablePortal
             id="combo-box-demo"
             options={gautras.map((item)=>{return item.name})}
+            onChange={(item)=>{handleAutocomplete(item, 'gautra')}}
             sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Gautra" onChange={handleChange}/>}
+            renderInput={(params) => <TextField {...params} label="Gautra" onChange={handleChange} value={gautra.value}/>}
           />
         </Grid>
 
@@ -317,14 +347,16 @@ export default function FirstStep() {
               native: true
             }}
             name='caste'
+            label="caste"
             value={caste.value}
             onChange={handleChange}
             error={!!caste.error}
+            defaultValue={"meghwal"}
             helperText={caste.error}
             required={caste.required}
           >
-            <option value='Unmarried'>Cast</option>
-            <option value='Married'>Married</option>
+            <option value='meghwal'>meghwal</option>
+            {/* <option value='Married'>Married</option> */}
           </TextField>
         </Grid>
 
@@ -338,19 +370,21 @@ export default function FirstStep() {
               native: true
             }}
             name='manglik'
+            label='manglik'
             value={manglik.value}
             onChange={handleChange}
             error={!!manglik.error}
+            defaultValue={"false"}
             helperText={manglik.error}
             required={manglik.required}
           >
-            <option value='Unmarried'>Manglik</option>
-            <option value='Married'>Married</option>
+            <option value='true'>Manglik</option>
+            <option value='false'>Not Manglik</option>
           </TextField>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-          <TextField
+        <Grid item xs={12} sm={8}>
+          {/* <TextField
             variant={variant}
             margin={margin}
             fullWidth
@@ -367,7 +401,15 @@ export default function FirstStep() {
           >
             <option value='Unmarried'>Blood-Group</option>
             <option value='Married'>Married</option>
-          </TextField>
+          </TextField> */}
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={blood_groups}
+            onChange={(item)=>{handleAutocomplete(item, 'bloodGroup')}}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Blood Group" onChange={handleChange} value={bloodGroup.value}/>}
+          />
         </Grid>
 
         <Grid item xs={6} sm={6}>
@@ -402,7 +444,7 @@ export default function FirstStep() {
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <TextField
+          {/* <TextField
             variant={variant}
             margin={margin}
             fullWidth
@@ -419,9 +461,22 @@ export default function FirstStep() {
           >
             <option value='Unmarried'>color</option>
             <option value='Married'>Married</option>
-          </TextField>
+          </TextField> */}
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            componentName='color'
+            options={complexions}
+            sx={{ width: 300 }}
+            onChange={(item)=>{handleAutocomplete(item, 'color')}}
+            renderInput={(params) => <TextField {...params} name= 'color' label="Complexion" value={color.value} onChange={handleChange}/>}
+          />
         </Grid>
       </Grid>
     </div>
   )
 }
+// function moment(time_selected: any) {
+//   throw new Error('Function not implemented.');
+// }
+
