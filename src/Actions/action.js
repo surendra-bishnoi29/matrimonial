@@ -77,7 +77,7 @@ export async function postDraftProfile (data){
 
 // API to publish profile
 export async function postPublishProfile (data){
-    url +='api/matrimony/12345678/profiles/'
+    url +='/api/matrimony/profile'
     const result = await helpers.httpPost(url, data)
     return result;
 }
