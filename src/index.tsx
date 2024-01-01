@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
+    <div style={{background:'#F3F3F3', height:'100vh', position:'fixed'}}></div>
     <StepsProvider>
       <App />
     </StepsProvider>

@@ -40,6 +40,7 @@ export default function App() {
   const { activePage } = useContext(AppContext)
   console.log(AppContext)
   return (
+    <div>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
@@ -53,6 +54,7 @@ export default function App() {
           {handlePages(activePage)}
       </Container>
     </ThemeProvider> 
+    </div>
   )
 }
 
