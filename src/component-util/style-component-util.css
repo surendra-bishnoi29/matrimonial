@@ -101,3 +101,8 @@
   margin-bottom: 16px;
 }
 
+.edit-previewcard{
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}

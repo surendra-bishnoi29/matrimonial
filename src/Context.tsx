@@ -129,7 +129,7 @@ function reducer(state: State, action: Action): State {
           ...state.formValues,
           [action.name]: {
             ...state.formValues[action.name],
-            value: action.fieldValue
+            value: action.fieldValue.trim()
           }
         }
       }
