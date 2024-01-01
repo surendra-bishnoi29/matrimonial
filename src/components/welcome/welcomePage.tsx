@@ -8,9 +8,16 @@ import { AppContext } from '../../Context'
 import { getMatrimonialProfiles } from '../../Actions/action'
 import CreateMatrimony from '../crateMatrimony/createMatrimony'
 
+interface stateproperties {
+  name: string;
+  age: string;
+  occupation: string;
+//   uid: string;
+}
+
 function WelcomePage() {
   const { activePage, handleNextPage } = useContext(AppContext)
-  const [profiles, setProfiles] = useState([1,2,3]);
+  const [profiles, setProfiles] = useState<stateproperties[]>([]);
 
   const buttons = [
     // {
@@ -43,6 +50,13 @@ function WelcomePage() {
     else {
       console.log("in welcome page, and await getMatrimonialProfiles() got error ")
     }
+
+    //to be commented later
+    setProfiles([{
+      name:"surendra",
+      age:"21",
+      occupation:'Software Engineer'
+    }])
   }
 
   return (
@@ -53,7 +67,7 @@ function WelcomePage() {
             <>
               {/* <div>Public Profiles</div> */}
               {profiles.map((item:any, index:any)=>{
-                return  < ExistingProfileCard profileData={["23 years", "Software Engineer"]} />
+                return  < ExistingProfileCard  profile={item} key={index}/>
               })}
               {/* < ExistingProfileCard profileData={["23 years", "Software Engineer"]} /> */}
 

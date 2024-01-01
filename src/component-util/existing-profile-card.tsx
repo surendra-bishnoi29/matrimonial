@@ -32,6 +32,7 @@ import '../components/welcome/style-welcome.css'
 // }));
 
 export default function ExistingProfileCard(props: any) {
+  const {profile} = props
   //   const [expanded, setExpanded] = React.useState(false);
 
   //   const handleExpandClick = () => {
@@ -46,13 +47,15 @@ export default function ExistingProfileCard(props: any) {
           <Typography variant='body2' color='text.secondary' sx={{ display: 'flex', flexDirection: 'column' }}>
             <div className='profile-info'>
               <div className='user'>
-                <div className='name'>Somesh Paliwal</div>
+                <div className='name'>{profile.name}</div>
               </div>
-              {props?.profileData?.map((item: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) =>
+              {/* {props?.profileData?.map((item: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) =>
               (
                 <div className='specification'>{item}</div>
               )
-              )}
+              )} */}
+              <div className='specification'>{profile.age} years</div>
+              <div className='specification'>{profile.occupation}</div>
               <div className='share-n-edit'>
                 <span className='share-n-edit-icon'>share</span>
                 <span className='share-n-edit-icon'>edit</span>
