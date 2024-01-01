@@ -1,14 +1,73 @@
-import React, { useCallback, useContext } from 'react'
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import { AppContext } from '../../Context'
-import './step-style-form.css'
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { AppContext } from '../../Context';
+import Autocomplete from '@mui/material/Autocomplete';
+import './step-style-form.css';
+import { getAllGautras } from '../../Actions/action';
+
+
+const dummyGautra :any[] = 
+  [
+          {
+              "_id": "629e07c188f66c15867f943e",
+              "all_names": [
+                  "अरटवाल"
+              ],
+              "display_name": "अरटवाल",
+              "name": "अरटवाल",
+              "subcastes": []
+          },
+          {
+              "_id": "629e07c188f66c15867f943f",
+              "all_names": [
+                  "आगलेचा",
+                  "अग्रवाल",
+                  "अरुण"
+              ],
+              "display_name": "आगलेचा/अग्रवाल/अरुण",
+              "name": "आगलेचा",
+              "subcastes": []
+          },
+          {
+              "_id": "629e07c188f66c15867f9440",
+              "all_names": [
+                  "आडान्या"
+              ],
+              "display_name": "आडान्या",
+              "name": "आडान्या",
+              "subcastes": []
+          },
+          {
+              "_id": "629e07c188f66c15867f9441",
+              "all_names": [
+                  "आयच"
+              ],
+              "display_name": "आयच",
+              "name": "आयच",
+              "subcastes": []
+          },
+          {
+              "_id": "629e07c188f66c15867f9442",
+              "all_names": [
+                  "आसोपिया"
+              ],
+              "display_name": "आसोपिया",
+              "name": "आसोपिया",
+              "subcastes": []
+          }
+      ]
+  interface stateproperties {
+        name: string;
+        age: number;
+  }
+      
 
 export default function FirstStep() {
   const { formValues, handleChange, handleNext, variant, margin } = useContext(AppContext)
@@ -16,6 +75,8 @@ export default function FirstStep() {
   const { firstName, lastName, date, birthPalce, marriageStatus, homeAddress, aboutMe, gautra, email, caste, manglik, height, bloodGroup, weight, color, gender } = formValues
 
   // Check if all values are not empty and if there are some errors
+  const [gautras, setGautras] = useState<stateproperties[]>([])
+  
   const isError = useCallback(
     () =>
       Object.keys({ firstName, lastName, email, gender }).some(
@@ -23,7 +84,22 @@ export default function FirstStep() {
       ),
     [formValues, firstName, lastName, email, gender]
   )
+  
+  useEffect(() => {
+    getGautras()
+  }, [])
+  const getGautras = async () => {
+    const response = await getAllGautras();
+    if(response.status){
+       // setGautras(response.data?.gautras);
+    }else{
+      console.log("error from frist step form, getGautras()");
+    }
 
+    //to be commented letter
+    setGautras(dummyGautra)
+   
+  }
   return (
     <div className='wrapper'>
       <div className='step-header'>Personal details</div>
@@ -38,7 +114,7 @@ export default function FirstStep() {
             name='firstName'
             placeholder='Your first name'
             value={firstName.value}
-            onChange={(k)=>{console.log(k)}}
+            onChange={handleChange}
             error={!!firstName.error}
             helperText={firstName.error}
             required={firstName.required}
@@ -78,19 +154,19 @@ export default function FirstStep() {
 
         </Grid>
         <Grid item xs={6} sm={6} >
-          <LocalizationProvider  dateAdapter={AdapterDayjs}
+          <LocalizationProvider dateAdapter={AdapterDayjs}
           >
             <DemoContainer
               components={[
                 'MobileTimePicker',
               ]}
-              sx={{paddingTop:'16px'}}
+              sx={{ paddingTop: '16px' }}
             >
 
               <DemoItem >
                 <MobileTimePicker
-                onChange={(item,k)=>{console.log(k)}}
-                 />
+                  onChange={(item, k) => { console.log(k) }}
+                />
               </DemoItem>
             </DemoContainer>
           </LocalizationProvider>
@@ -204,7 +280,7 @@ export default function FirstStep() {
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <TextField
+          {/* <TextField
             variant={variant}
             margin={margin}
             fullWidth
@@ -221,7 +297,14 @@ export default function FirstStep() {
           >
             <option value='Unmarried'>Gautra</option>
             <option value='Married'>Married</option>
-          </TextField>
+          </TextField> */}
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={gautras.map((item)=>{return item.name})}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Gautra" onChange={handleChange}/>}
+          />
         </Grid>
 
         <Grid item xs={12} sm={6}>

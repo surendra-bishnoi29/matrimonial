@@ -32,7 +32,7 @@ function Footer(props:any) {
           const {buttonName} = item
           const {wrapperStyle} = item
           const {disabled} = item
-          console.log(item);
+        
           return (<div style={wrapperStyle}><Button variant={varient} disabled={disabled} sx={buttonStyle} onClick={onClick}>{buttonName}</Button></div>)
         })}
       {/* <div style={props.buttonStyle}><Button variant='text' >Back</Button></div>

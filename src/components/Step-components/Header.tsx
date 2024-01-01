@@ -36,7 +36,7 @@ function Header() {
       <PiQuestionBold style={{color:'white', fontSize:'21px'}} />):' '}
     </Toolbar>
   </AppBar>
-  <AppBar   position='static' sx={{marginBottom:'60px'}}>
+  <AppBar   position='static' sx={{marginBottom:'80px'}}>
   {/* <Toolbar sx={{display:'flex', justifyContent:'space-between'}}>
     <PiCaretLeftBold style={{color:'white', fontSize:'20px'}}/>
       <Typography variant='h6' component="div" color='inherit' noWrap>
