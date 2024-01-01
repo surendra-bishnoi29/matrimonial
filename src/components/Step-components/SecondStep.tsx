@@ -65,18 +65,19 @@ export default function SecondStep() {
             margin={margin}
             fullWidth
             select
+            label="Job Status"
             SelectProps={{
               native: true
             }}
             name='jobStatus'
-          // value={jobStatus.value}
-          // onChange={handleChange}
+          value={jobStatus.value}
+          onChange={handleChange}
           // error={!!jobStatus.error}
           // helperText={jobStatus.error}
           // required={jobStatus.required}
           >
-            <option value='Unmarried'>job</option>
-            <option value='Married'>study</option>
+            <option value='job'>job</option>
+            <option value='study'>study</option>
           </TextField>
         </Grid>
 
@@ -86,18 +87,19 @@ export default function SecondStep() {
             margin={margin}
             fullWidth
             select
+            label="Job Type"
             SelectProps={{
               native: true
             }}
             name='jobType'
-          // value={jobType.value}
-          // onChange={handleChange}
+          value={jobType.value}
+          onChange={handleChange}
           // error={!!jobType.error}
           // helperText={jobType.error}
           // required={jobType.required}
           >
-            <option value='Unmarried'>private</option>
-            <option value='Married'>govt</option>
+            <option value='private'>private</option>
+            <option value='government'>govt</option>
           </TextField>
         </Grid>
 
