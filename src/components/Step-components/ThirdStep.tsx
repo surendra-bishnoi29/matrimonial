@@ -63,11 +63,11 @@ function ThirdStep() {
                 // rowHeight={200}
                 // gap={1}
                 >
+                  {/* <EditTile />
                   <EditTile />
                   <EditTile />
                   <EditTile />
-                  <EditTile />
-                  <EditTile />
+                  <EditTile /> */}
                   <EditTile />
 
                 </ImageList>
@@ -77,12 +77,12 @@ function ThirdStep() {
                 <div className='info-card-header-add-member-3rd-step'>Add member</div>
               </div>
               <div className='slip-info-card-3rd-step'>
+                {/* <SlipInfoCard />
                 <SlipInfoCard />
                 <SlipInfoCard />
                 <SlipInfoCard />
                 <SlipInfoCard />
-                <SlipInfoCard />
-                <SlipInfoCard />
+                <SlipInfoCard /> */}
               </div>
               <hr style={{height:'1px', width:"100%"}}/>
               <div className='footer'>

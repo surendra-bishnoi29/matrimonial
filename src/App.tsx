@@ -12,7 +12,8 @@ import CreateMatrimony from './components/crateMatrimony/createMatrimony'
 import FoundMatches from './components/welcome/foundMatches'
 import SlipInfoCard from "./component-util/SlipInfoCard"
 import { EditTile } from './component-util/EditTile'
-import Confirm from './components/Step-components/Confirm'
+import Preview from './components/Step-components/preview'
+
 
 
 const handlePages = (page: number) => {
@@ -25,7 +26,7 @@ const handlePages = (page: number) => {
     case 2:
        return <StepForm />
     case 3:
-       return <Confirm />
+       return <Preview />
     default:
       throw new Error('Unknown step')
   }

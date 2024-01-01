@@ -39,88 +39,32 @@ export default function ExistingProfileCard(props: any) {
   //   };
 
   return (
-    <Card sx={{ display: 'flex', flexDirection:'column' }}>
-      {/* <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
-      /> */}
+    <Card sx={{ display: 'flex', flexDirection: 'column', margin:'16px'}}>
       <div className='upper-part'>
-      <CardMedia component='img' sx={{ height:'auto', minHeight: '120px', minWidth: '80px', width:'auto' , maxHeight: '140px', maxWidth: '112px'}} image='somesh.png' alt='Paella dish' />
-      <CardContent sx={{ height:'100%', width:'100%',}}>
-        <Typography variant='body2' color='text.secondary' sx={{ display: 'flex', flexDirection: 'column' }}>
-          <div className='profile-info'>
-            <div className='user'>
-              <div className='name'>Somesh Paliwal</div>
-              <div className='edit-icon'>E</div>
-            </div>
-           { props?.profileData?.map((item: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined)=>
-          (
+        <CardMedia component='img' sx={{ height: 'auto', minHeight: '120px', minWidth: '80px', width: 'auto', maxHeight: '140px', maxWidth: '112px' }} image='somesh.png' alt='Paella dish' />
+        <CardContent sx={{ height: '100%', width: '100%', }}>
+          <Typography variant='body2' color='text.secondary' sx={{ display: 'flex', flexDirection: 'column' }}>
+            <div className='profile-info'>
+              <div className='user'>
+                <div className='name'>Somesh Paliwal</div>
+              </div>
+              {props?.profileData?.map((item: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) =>
+              (
                 <div className='specification'>{item}</div>
-            )
-          )}
-          </div>
-        </Typography>
-      </CardContent>
-      </div>
-      <div className='lower-part'>
-        <div className='profile-matches'>12 matches</div>
-        <div className='button-for-show'>Show Matches</div>
-      </div>
-      {/* <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions> */}
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-            aside for 10 minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-            medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-            occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-            large plate and set aside, leaving chicken and chorizo in the pan. Add
-            pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-            stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is absorbed,
-            15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp and
-            mussels, tucking them down into the rice, and cook again without
-            stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don&apos;t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
+              )
+              )}
+              <div className='share-n-edit'>
+                <span className='share-n-edit-icon'>share</span>
+                <span className='share-n-edit-icon'>edit</span>
+              </div>
+            </div>
           </Typography>
         </CardContent>
-      </Collapse> */}
+      </div>
+      {/* <div className='lower-part'>
+        <div className='profile-matches'>12 matches</div>
+        <div className='button-for-show'>Show Matches</div>
+      </div> */}
     </Card>
   )
 }
