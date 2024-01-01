@@ -55,7 +55,7 @@ export default function Preview() {
 
   return (
     <>
-    <div style={{display:'flex', gap:'16px', flexDirection:'column'}}>
+    <div style={{display:'flex', gap:'16px', flexDirection:'column', marginBottom:'70px'}}>
       <PreviewPersonal/>
       <PreviewEducation/>
       <PreviewOccupation />
