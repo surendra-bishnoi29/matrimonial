@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CardHeader from '@mui/material/CardHeader';
@@ -6,11 +6,36 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import { Avatar, Button, Card } from '@mui/material';
-import { getMatrimonialProfiles } from '../../Actions/action';
+import { getEligibleFamilyMembers, getMatrimonialProfiles } from '../../Actions/action';
 import "./style-create-matrimony.css"
 import SearchBar from '../../component-util/search';
 import SlipInfoCard from '../../component-util/SlipInfoCard';
 import { AppContext } from '../../Context'
+
+interface stateproperties {
+  name: string;
+  pic_url: string;
+  relation: string;
+  uid: string;
+}
+
+const dummyProfiles = {
+  "status": true,
+  "unmarried_members": [
+    {
+      "name": "उमा",
+      "pic_url": "",
+      "relation": "पुत्री",
+      "uid": "124"
+    },
+    {
+      "name": "ख़ुशाल",
+      "pic_url": "https://s3.ap-south-1.amazonaws.com/paliwalkutumb/profiles%2F7086ba40-8a8b-4439-91e4-dd9dd100f4ee.jpg",
+      "relation": "पुत्र",
+      "uid": "163"
+    }
+  ]
+}
 
 
 const theme = createTheme({
@@ -35,22 +60,30 @@ const theme = createTheme({
 
 function CreateMatrimony() {
   const { activePage, handleNextPage, handleChangePageVal, handleChangeStepVal } = useContext(AppContext)
-
+  const [members, setMembers] = useState<stateproperties[]>([])
   useEffect(() => {
     getProfiles()
     handleChangeStepVal(0)
   }, []);
   const getProfiles = async () => {
-    const response = await getMatrimonialProfiles();
-    console.log(response);
+    // const response = await getEligibleFamilyMembers();
+    // to be commented later
+    const response = dummyProfiles
+    if (response.status) {
+      setMembers(response.unmarried_members)
+    } else {
+      console.log("getting error in creatematrimony--->getProfiles()")
+    }
+
+
   }
 
-  const handleAction =() =>{
+  const handleAction = () => {
     handleNextPage();
   }
   return (
     <div style={{ display: 'flex', gap: '14px', flexDirection: "column" }}>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <ThemeProvider theme={theme}>
         <Box
           sx={{
@@ -61,10 +94,16 @@ function CreateMatrimony() {
           }}
         >
           <CardHeader
-            title="Your family member"
+            sx={{ margin: '0px', padding: '0px', fontWeight: 'bold' }}
+            title="Your family members"
           />
           <hr />
-          <SlipInfoCard />
+          {members.map((item) => {
+            return <>
+              <SlipInfoCard member = {item} key={item.uid}/>
+            </>
+          })}
+          {/* <SlipInfoCard /> */}
           {/* <div className="frame">
       <img className="ellipse" alt="Ellipse" src="blank.png" />
       <div className="div">
@@ -84,7 +123,7 @@ function CreateMatrimony() {
                 fontStyle: 'normal',
                 borderRadius: '100px'
               }}
-              onClick={handleAction}
+              // onClick={handleAction}
               fullWidth>
               + &nbsp; Add member
             </Button>
