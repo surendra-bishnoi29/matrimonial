@@ -158,12 +158,12 @@ export const initialValues: ValidationSchema = {
   },
 
   jobStatus: {
-    value: 'student',
+    value: 'job',
     error: '',
     validate: 'select'
   },
   jobType: {
-    value: '',
+    value: 'government',
     error: '',
     validate: 'select'
   },
